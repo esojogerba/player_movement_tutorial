@@ -6,4 +6,6 @@ end
 
 function love.update(dt) end
 
-function love.draw() end
+function love.draw()
+	love.graphics.circle("fill", Player.x, Player.y, 100)
+end
