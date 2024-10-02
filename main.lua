@@ -1,9 +1,16 @@
 function love.load()
+	-- Player
 	Player = {}
+	-- Position
 	Player.x = 400
 	Player.y = 200
+	-- Speed
 	Player.speed = 3
+	-- Sprite
 	Player.sprite = love.graphics.newImage("sprites/parrot.png")
+
+	-- Background image
+	Background = love.graphics.newImage("sprites/background.png")
 end
 
 function love.update(dt)
@@ -26,5 +33,8 @@ function love.update(dt)
 end
 
 function love.draw()
+	-- Draw background
+	love.graphics.draw(Background, 0, 0)
+	-- Draw player sprite
 	love.graphics.draw(Player.sprite, Player.x, Player.y)
 end
