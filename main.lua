@@ -1,4 +1,8 @@
-function love.load() end
+function love.load()
+	Player = {}
+	Player.x = 400
+	Player.y = 200
+end
 
 function love.update(dt) end
 
