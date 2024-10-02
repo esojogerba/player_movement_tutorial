@@ -3,6 +3,7 @@ function love.load()
 	Player.x = 400
 	Player.y = 200
 	Player.speed = 3
+	Player.sprite = love.graphics.newImage("sprites/parrot.png")
 end
 
 function love.update(dt)
@@ -25,5 +26,5 @@ function love.update(dt)
 end
 
 function love.draw()
-	love.graphics.circle("fill", Player.x, Player.y, 100)
+	love.graphics.draw(Player.sprite, Player.x, Player.y)
 end
