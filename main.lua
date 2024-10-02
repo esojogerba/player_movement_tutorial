@@ -13,6 +13,14 @@ function love.update(dt)
 	if love.keyboard.isDown("left") then
 		Player.x = Player.x - 3
 	end
+	-- Player moves up
+	if love.keyboard.isDown("up") then
+		Player.y = Player.y - 3
+	end
+	-- Player moves down
+	if love.keyboard.isDown("down") then
+		Player.y = Player.y + 3
+	end
 end
 
 function love.draw()
