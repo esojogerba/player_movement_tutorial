@@ -9,6 +9,9 @@ function love.load()
 	Player.y = 200
 	-- Speed
 	Player.speed = 3
+	-- Sprite
+	Player.sprite = love.graphics.newImage("sprites/player-sheet.png")
+	Player.grid = anim8.newGrid(12, 18, Player.spriteSheet:getWidth(), Player.spriteSheet:getHeight())
 
 	-- Background image
 	Background = love.graphics.newImage("sprites/background.png")
