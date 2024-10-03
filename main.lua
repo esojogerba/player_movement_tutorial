@@ -1,4 +1,7 @@
 function love.load()
+	-- Anim8 Library
+	anim8 = require("libraries/anim8")
+
 	-- Player
 	Player = {}
 	-- Position
@@ -6,8 +9,6 @@ function love.load()
 	Player.y = 200
 	-- Speed
 	Player.speed = 3
-	-- Sprite
-	Player.sprite = love.graphics.newImage("sprites/parrot.png")
 
 	-- Background image
 	Background = love.graphics.newImage("sprites/background.png")
