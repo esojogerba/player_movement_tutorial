@@ -32,18 +32,22 @@ function love.update(dt)
 	-- Player moves right
 	if love.keyboard.isDown("right") then
 		Player.x = Player.x + Player.speed
+		Player.anim = Player.animations.right
 	end
 	-- Player moves left
 	if love.keyboard.isDown("left") then
 		Player.x = Player.x - Player.speed
+		Player.anim = Player.animations.left
 	end
 	-- Player moves up
 	if love.keyboard.isDown("up") then
 		Player.y = Player.y - Player.speed
+		Player.anim = Player.animations.up
 	end
 	-- Player moves down
 	if love.keyboard.isDown("down") then
 		Player.y = Player.y + Player.speed
+		Player.anim = Player.animations.down
 	end
 
 	Player.anim:update(dt)
