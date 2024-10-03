@@ -2,6 +2,9 @@ function love.load()
 	-- Anim8 Library
 	anim8 = require("libraries/anim8")
 
+	-- STI library
+	sti = require("libraries/sti")
+
 	-- Smooth scaling
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
