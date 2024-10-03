@@ -5,6 +5,9 @@ function love.load()
 	-- STI library
 	sti = require("libraries/sti")
 
+	-- Map
+	gameMap = sti("maps/testMap.lua")
+
 	-- Smooth scaling
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
@@ -69,8 +72,8 @@ function love.update(dt)
 end
 
 function love.draw()
-	-- Draw background
-	love.graphics.draw(Background, 0, 0)
+	-- Draw map
+	gameMap:draw()
 	-- Draw player sprite
 	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5)
 end
