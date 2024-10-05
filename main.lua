@@ -76,8 +76,12 @@ function love.update(dt)
 end
 
 function love.draw()
-	-- Draw map
-	gameMap:draw()
+	-- Draw from the camera's perspective
+	cam:attach()
+	-- Draw map in layers
+	gameMap:drawLayer(gameMap.layers["Ground"])
+	gameMap:drawLayer(gameMap.layers["Trees"])
 	-- Draw player sprite
 	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5)
+	cam:detach()
 end
