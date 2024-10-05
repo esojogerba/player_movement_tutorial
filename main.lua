@@ -1,5 +1,9 @@
 function love.load()
-	-- Anim8 Library
+	-- Camera library
+	camera = require("libraries/camera")
+	cam = camera()
+
+	-- Anim8 library
 	anim8 = require("libraries/anim8")
 
 	-- STI library
@@ -17,7 +21,7 @@ function love.load()
 	Player.x = 400
 	Player.y = 200
 	-- Speed
-	Player.speed = 3
+	Player.speed = 5
 	-- Sprite and grid
 	Player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
 	Player.grid = anim8.newGrid(12, 18, Player.spriteSheet:getWidth(), Player.spriteSheet:getHeight())
