@@ -73,6 +73,9 @@ function love.update(dt)
 	end
 
 	Player.anim:update(dt)
+
+	-- Camera follows player
+	cam:lookAt(Player.x, Player.y)
 end
 
 function love.draw()
@@ -82,6 +85,6 @@ function love.draw()
 	gameMap:drawLayer(gameMap.layers["Ground"])
 	gameMap:drawLayer(gameMap.layers["Trees"])
 	-- Draw player sprite
-	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5)
+	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5, nil, 6, 9)
 	cam:detach()
 end
