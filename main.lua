@@ -76,6 +76,35 @@ function love.update(dt)
 
 	-- Camera follows player
 	cam:lookAt(Player.x, Player.y)
+
+	-- Prevent camera from going out of bounds
+
+	-- Game screen dimmensions
+	local w = love.graphics.getWidth()
+	local h = love.graphics.getHeight()
+
+	-- Left border
+	if cam.x < w / 2 then
+		cam.x = w / 2
+	end
+	-- Top border
+	if cam.y < h / 2 then
+		cam.y = h / 2
+	end
+
+	-- Game map dimmensions
+	local mapW = gameMap.width * gameMap.tilewidth
+	local mapH = gameMap.height * gameMap.tileheight
+
+	-- Right border
+	if cam.x > (mapW - w / 2) then
+		cam.x = (mapW - w / 2)
+	end
+
+	--Bottom border
+	if cam.y > (mapH - h / 2) then
+		cam.y = (mapH - h / 2)
+	end
 end
 
 function love.draw()
