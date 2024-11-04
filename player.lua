@@ -19,6 +19,41 @@ function Player:load()
 	Player.anim = Player.animations.down
 end
 
-function Player:update(dt) end
+function Player:update(dt)
+	-- Check if no keys are pressed
+	local isMoving = false
+
+	-- Player moves right
+	if love.keyboard.isDown("right") then
+		Player.x = Player.x + Player.speed
+		Player.anim = Player.animations.right
+		isMoving = true
+	end
+	-- Player moves left
+	if love.keyboard.isDown("left") then
+		Player.x = Player.x - Player.speed
+		Player.anim = Player.animations.left
+		isMoving = true
+	end
+	-- Player moves up
+	if love.keyboard.isDown("up") then
+		Player.y = Player.y - Player.speed
+		Player.anim = Player.animations.up
+		isMoving = true
+	end
+	-- Player moves down
+	if love.keyboard.isDown("down") then
+		Player.y = Player.y + Player.speed
+		Player.anim = Player.animations.down
+		isMoving = true
+	end
+
+	-- If player is standing still, use still frame
+	if isMoving == false then
+		Player.anim:gotoFrame(2)
+	end
+
+	Player.anim:update(dt)
+end
 
 function Player:draw() end
