@@ -67,7 +67,8 @@ function love.draw()
 	-- Draw map in layers
 	gameMap:drawLayer(gameMap.layers["Ground"])
 	gameMap:drawLayer(gameMap.layers["Trees"])
+	-- Player
+	Player:draw()
 	-- Draw player sprite
-	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5, nil, 6, 9)
 	cam:detach()
 end
