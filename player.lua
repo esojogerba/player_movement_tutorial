@@ -56,4 +56,6 @@ function Player:update(dt)
 	Player.anim:update(dt)
 end
 
-function Player:draw() end
+function Player:draw()
+	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5, nil, 6, 9)
+end
