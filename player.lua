@@ -20,6 +20,10 @@ function Player:load()
 end
 
 function Player:update(dt)
+	self:move(dt)
+end
+
+function Player:move(dt)
 	-- Check if no keys are pressed
 	local isMoving = false
 
