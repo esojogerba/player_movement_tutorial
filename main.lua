@@ -1,6 +1,10 @@
 require("player")
 
 function love.load()
+	-- Windfield physics library
+	wf = require("libraries/Windfield")
+	world = wf.newWorld(0, 0)
+
 	-- Camera library
 	camera = require("libraries/camera")
 	cam = camera()
@@ -28,6 +32,9 @@ function love.update(dt)
 	-- Player
 	Player:update(dt)
 
+	-- Update world
+	world:update(dt)
+
 	-- Camera follows player
 	cam:lookAt(Player.x, Player.y)
 
@@ -43,7 +50,9 @@ function love.draw()
 	gameMap:drawLayer(gameMap.layers["Trees"])
 	-- Player
 	Player:draw()
-	-- Draw player sprite
+	-- Draw world
+	world:draw()
+	-- Detach camera
 	cam:detach()
 end
 
