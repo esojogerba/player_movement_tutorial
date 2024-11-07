@@ -26,6 +26,18 @@ function love.load()
 
 	-- Background image
 	Background = love.graphics.newImage("sprites/background.png")
+
+	-- Wall layer
+	walls = {}
+	if gameMap.layers["Walls"] then
+		for i, obj in pairs(gameMap.layers["Walls"].objects) do
+			local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
+			wall:setType("static")
+			table.insert(walls, wall)
+		end
+	end
+
+	-- Wall Collider
 end
 
 function love.update(dt)
@@ -57,8 +69,8 @@ function love.draw()
 	-- Player
 	Player:draw()
 
-	-- Draw world
-	world:draw()
+	-- Draw world colliders
+	-- world:draw()
 
 	-- Detach camera
 	cam:detach()
