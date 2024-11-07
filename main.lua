@@ -35,6 +35,10 @@ function love.update(dt)
 	-- Update world
 	world:update(dt)
 
+	-- Match player position with collider position
+	Player.x = Player.collider:getX()
+	Player.y = Player.collider:getY()
+
 	-- Camera follows player
 	cam:lookAt(Player.x, Player.y)
 
@@ -45,13 +49,17 @@ end
 function love.draw()
 	-- Draw from the camera's perspective
 	cam:attach()
+
 	-- Draw map in layers
 	gameMap:drawLayer(gameMap.layers["Ground"])
 	gameMap:drawLayer(gameMap.layers["Trees"])
+
 	-- Player
 	Player:draw()
+
 	-- Draw world
 	world:draw()
+
 	-- Detach camera
 	cam:detach()
 end
