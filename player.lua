@@ -1,6 +1,9 @@
 Player = {}
 
 function Player:load()
+	-- Collider
+	Player.collider = world:newBSGRectangleCollider(400, 200, 80, 100, 10)
+	Player.collider:setFixedRotation(true)
 	-- Position
 	Player.x = 400
 	Player.y = 200
