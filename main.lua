@@ -32,7 +32,23 @@ function love.update(dt)
 	cam:lookAt(Player.x, Player.y)
 
 	-- Prevent camera from going out of bounds
+	cameraBounds()
+end
 
+function love.draw()
+	-- Draw from the camera's perspective
+	cam:attach()
+	-- Draw map in layers
+	gameMap:drawLayer(gameMap.layers["Ground"])
+	gameMap:drawLayer(gameMap.layers["Trees"])
+	-- Player
+	Player:draw()
+	-- Draw player sprite
+	cam:detach()
+end
+
+-- Prevent camera from going out of bounds
+function cameraBounds()
 	-- Game screen dimmensions
 	local w = love.graphics.getWidth()
 	local h = love.graphics.getHeight()
@@ -59,16 +75,4 @@ function love.update(dt)
 	if cam.y > (mapH - h / 2) then
 		cam.y = (mapH - h / 2)
 	end
-end
-
-function love.draw()
-	-- Draw from the camera's perspective
-	cam:attach()
-	-- Draw map in layers
-	gameMap:drawLayer(gameMap.layers["Ground"])
-	gameMap:drawLayer(gameMap.layers["Trees"])
-	-- Player
-	Player:draw()
-	-- Draw player sprite
-	cam:detach()
 end
