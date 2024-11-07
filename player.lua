@@ -20,9 +20,11 @@ function Player:load()
 end
 
 function Player:update(dt)
+	-- Player movement with arrow keys
 	self:move(dt)
 end
 
+-- Player movement with arrow keys
 function Player:move(dt)
 	-- Check if no keys are pressed
 	local isMoving = false
