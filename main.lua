@@ -37,7 +37,6 @@ function love.load()
 		end
 	end
 
-	-- Wall Collider
 end
 
 function love.update(dt)
