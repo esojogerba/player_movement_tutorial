@@ -8,10 +8,23 @@ function love.load()
 
 	-- Camera library
 	camera = require("libraries/camera")
-	cam = camera()
 
 	-- Map
 	Map:load()
+
+	-- Camera
+	cam = camera()
+
+	-- Calculate scale to fit the screen
+	local screenWidth, screenHeight = love.graphics.getDimensions()
+	local mapWidth = Map.gameMap.width * Map.gameMap.tilewidth
+	local mapHeight = Map.gameMap.height * Map.gameMap.tileheight
+
+	local scaleX = screenWidth / mapWidth
+	local scaleY = screenHeight / mapHeight
+
+	-- Set the scale to the smaller of the two to maintain aspect ratio
+	cam.scale = math.min(scaleX, scaleY)
 
 	-- Player
 	Player:load()
@@ -27,11 +40,8 @@ function love.update(dt)
 	-- Update world
 	world:update(dt)
 
-	-- Camera follows player
-	cam:lookAt(Player.x, Player.y)
-
-	-- Prevent camera from going out of bounds
-	cameraBounds()
+	-- Camera is set to the center of the map
+	cam:lookAt(Map.x, Map.y)
 end
 
 function love.draw()
@@ -49,34 +59,4 @@ function love.draw()
 
 	-- Detach camera
 	cam:detach()
-end
-
--- Prevent camera from going out of bounds
-function cameraBounds()
-	-- Game screen dimmensions
-	local w = love.graphics.getWidth()
-	local h = love.graphics.getHeight()
-
-	-- Left border
-	if cam.x < w / 2 then
-		cam.x = w / 2
-	end
-	-- Top border
-	if cam.y < h / 2 then
-		cam.y = h / 2
-	end
-
-	-- Game map dimmensions
-	local mapW = Map.gameMap.width * Map.gameMap.tilewidth
-	local mapH = Map.gameMap.height * Map.gameMap.tileheight
-
-	-- Right border
-	if cam.x > (mapW - w / 2) then
-		cam.x = (mapW - w / 2)
-	end
-
-	--Bottom border
-	if cam.y > (mapH - h / 2) then
-		cam.y = (mapH - h / 2)
-	end
 end
