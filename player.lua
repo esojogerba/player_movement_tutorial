@@ -8,15 +8,15 @@ function Player:load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- Collider
-	self.collider = world:newBSGRectangleCollider(400, 450, 50, 84, 10)
+	self.collider = world:newBSGRectangleCollider(0, 0, 25, 42, 5)
 	self.collider:setFixedRotation(true)
 
 	-- Position
-	self.x = 400
-	self.y = 450
+	self.x = 0
+	self.y = 0
 
 	-- Speed
-	self.speed = 300
+	self.speed = 100
 
 	-- Sprite and grid
 	self.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
@@ -88,5 +88,5 @@ function Player:move(dt)
 end
 
 function Player:draw()
-	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 5, nil, 6, 9)
+	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, nil, 6, 9)
 end
