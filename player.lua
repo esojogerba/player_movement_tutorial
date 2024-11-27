@@ -1,6 +1,9 @@
 Player = {}
 
 function Player:load()
+	-- Smooth scaling
+	love.graphics.setDefaultFilter("nearest", "nearest")
+
 	-- Collider
 	Player.collider = world:newBSGRectangleCollider(400, 450, 50, 84, 10)
 	Player.collider:setFixedRotation(true)
