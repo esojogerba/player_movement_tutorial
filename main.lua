@@ -27,10 +27,6 @@ function love.update(dt)
 	-- Update world
 	world:update(dt)
 
-	-- Match player position with collider position
-	Player.x = Player.collider:getX()
-	Player.y = Player.collider:getY()
-
 	-- Camera follows player
 	cam:lookAt(Player.x, Player.y)
 

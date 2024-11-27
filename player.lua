@@ -36,6 +36,10 @@ end
 function Player:update(dt)
 	-- Player movement with arrow keys
 	self:move(dt)
+
+	-- Match player position with collider position
+	self.x = self.collider:getX()
+	self.y = self.collider:getY()
 end
 
 -- Player movement with arrow keys
