@@ -6,6 +6,10 @@ function love.load()
 	wf = require("libraries/Windfield")
 	world = wf.newWorld(0, 0)
 
+	-- Collision class
+	world:addCollisionClass("Obstacle", { collidesWith = { "Enemy", "Player" } })
+	world:addCollisionClass("Player", { collidesWith = { "Obstacle", "Enemy" } })
+
 	-- Camera library
 	camera = require("libraries/camera")
 
