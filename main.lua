@@ -1,4 +1,5 @@
 require("player")
+require("map")
 
 function love.load()
 	-- Windfield physics library
@@ -12,34 +13,17 @@ function love.load()
 	-- Anim8 library
 	anim8 = require("libraries/anim8")
 
-	-- STI library
-	sti = require("libraries/sti")
-
 	-- Map
-	gameMap = sti("maps/testMap.lua")
-
-	-- Smooth scaling
-	love.graphics.setDefaultFilter("nearest", "nearest")
+	Map:load()
 
 	-- Player
 	Player:load()
-
-	-- Background image
-	Background = love.graphics.newImage("sprites/background.png")
-
-	-- Wall layer
-	walls = {}
-	if gameMap.layers["Walls"] then
-		for i, obj in pairs(gameMap.layers["Walls"].objects) do
-			local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
-			wall:setType("static")
-			table.insert(walls, wall)
-		end
-	end
-
 end
 
 function love.update(dt)
+	-- Map
+	Map:update(dt)
+
 	-- Player
 	Player:update(dt)
 
@@ -61,9 +45,8 @@ function love.draw()
 	-- Draw from the camera's perspective
 	cam:attach()
 
-	-- Draw map in layers
-	gameMap:drawLayer(gameMap.layers["Ground"])
-	gameMap:drawLayer(gameMap.layers["Trees"])
+	-- Map
+	Map:draw()
 
 	-- Player
 	Player:draw()
