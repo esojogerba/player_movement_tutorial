@@ -74,8 +74,8 @@ function cameraBounds()
 	end
 
 	-- Game map dimmensions
-	local mapW = gameMap.width * gameMap.tilewidth
-	local mapH = gameMap.height * gameMap.tileheight
+	local mapW = Map.gameMap.width * Map.gameMap.tilewidth
+	local mapH = Map.gameMap.height * Map.gameMap.tileheight
 
 	-- Right border
 	if cam.x > (mapW - w / 2) then
