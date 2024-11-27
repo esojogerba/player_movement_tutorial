@@ -5,7 +5,9 @@ function Map:load()
 	sti = require("libraries/sti")
 
 	-- Map
-	self.gameMap = sti("maps/testMap.lua")
+	self.gameMap = sti("maps/square_map.lua")
+	self.x = (self.gameMap.width * self.gameMap.tilewidth) / 2
+	self.y = (self.gameMap.height * self.gameMap.tileheight) / 2
 
 	-- Wall layer
 	walls = {}
@@ -22,6 +24,6 @@ function Map:update(dt) end
 
 function Map:draw()
 	-- Draw map in layers
-	self.gameMap:drawLayer(self.gameMap.layers["Ground"])
-	self.gameMap:drawLayer(self.gameMap.layers["Trees"])
+	self.gameMap:drawLayer(self.gameMap.layers["Floor"])
+	self.gameMap:drawLayer(self.gameMap.layers["Obstacles"])
 end
