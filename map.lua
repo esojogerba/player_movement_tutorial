@@ -9,12 +9,16 @@ function Map:load()
 	self.x = (self.gameMap.width * self.gameMap.tilewidth) / 2
 	self.y = (self.gameMap.height * self.gameMap.tileheight) / 2
 
+	-- Collision class
+	world:addCollisionClass("Obstacle", { collidesWith = { "Enemy", "Player" } })
+
 	-- Wall layer
 	walls = {}
 	if self.gameMap.layers["Walls"] then
 		for i, obj in pairs(self.gameMap.layers["Walls"].objects) do
 			local wall = world:newRectangleCollider(obj.x, obj.y, obj.width, obj.height)
 			wall:setType("static")
+			wall:setCollisionClass("Obstacle")
 			table.insert(walls, wall)
 		end
 	end

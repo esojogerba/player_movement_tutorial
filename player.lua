@@ -8,7 +8,9 @@ function Player:load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- Collider
+	world:addCollisionClass("Player", { collidesWith = { "Obstacle", "Enemy" } })
 	self.collider = world:newBSGRectangleCollider(0, 0, 25, 42, 5)
+	self.collider:setCollisionClass("Player")
 	self.collider:setFixedRotation(true)
 
 	-- Position
