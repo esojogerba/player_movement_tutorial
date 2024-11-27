@@ -1,33 +1,36 @@
 Player = {}
 
 function Player:load()
+	-- Anim8 library
+	anim8 = require("libraries/anim8")
+
 	-- Smooth scaling
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- Collider
-	Player.collider = world:newBSGRectangleCollider(400, 450, 50, 84, 10)
-	Player.collider:setFixedRotation(true)
+	self.collider = world:newBSGRectangleCollider(400, 450, 50, 84, 10)
+	self.collider:setFixedRotation(true)
 
 	-- Position
-	Player.x = 400
-	Player.y = 450
+	self.x = 400
+	self.y = 450
 
 	-- Speed
-	Player.speed = 300
+	self.speed = 300
 
 	-- Sprite and grid
-	Player.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
-	Player.grid = anim8.newGrid(12, 18, Player.spriteSheet:getWidth(), Player.spriteSheet:getHeight())
+	self.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
+	self.grid = anim8.newGrid(12, 18, self.spriteSheet:getWidth(), self.spriteSheet:getHeight())
 
 	-- Animations
-	Player.animations = {}
-	Player.animations.down = anim8.newAnimation(Player.grid("1-4", 1), 0.2)
-	Player.animations.left = anim8.newAnimation(Player.grid("1-4", 2), 0.2)
-	Player.animations.right = anim8.newAnimation(Player.grid("1-4", 3), 0.2)
-	Player.animations.up = anim8.newAnimation(Player.grid("1-4", 4), 0.2)
+	self.animations = {}
+	self.animations.down = anim8.newAnimation(self.grid("1-4", 1), 0.2)
+	self.animations.left = anim8.newAnimation(self.grid("1-4", 2), 0.2)
+	self.animations.right = anim8.newAnimation(self.grid("1-4", 3), 0.2)
+	self.animations.up = anim8.newAnimation(self.grid("1-4", 4), 0.2)
 
 	-- Player's current animation
-	Player.anim = Player.animations.down
+	self.anim = self.animations.down
 end
 
 function Player:update(dt)
@@ -46,40 +49,40 @@ function Player:move(dt)
 
 	-- Player moves right
 	if love.keyboard.isDown("right") then
-		vx = Player.speed
-		Player.anim = Player.animations.right
+		vx = self.speed
+		self.anim = self.animations.right
 		isMoving = true
 	end
 	-- Player moves left
 	if love.keyboard.isDown("left") then
-		vx = Player.speed * -1
-		Player.anim = Player.animations.left
+		vx = self.speed * -1
+		self.anim = self.animations.left
 		isMoving = true
 	end
 	-- Player moves up
 	if love.keyboard.isDown("up") then
-		vy = Player.speed * -1
-		Player.anim = Player.animations.up
+		vy = self.speed * -1
+		self.anim = self.animations.up
 		isMoving = true
 	end
 	-- Player moves down
 	if love.keyboard.isDown("down") then
-		vy = Player.speed
-		Player.anim = Player.animations.down
+		vy = self.speed
+		self.anim = self.animations.down
 		isMoving = true
 	end
 
 	-- Update linear velocity of collider depending on key pressed
-	Player.collider:setLinearVelocity(vx, vy)
+	self.collider:setLinearVelocity(vx, vy)
 
 	-- If player is standing still, use still frame
 	if isMoving == false then
-		Player.anim:gotoFrame(2)
+		self.anim:gotoFrame(2)
 	end
 
-	Player.anim:update(dt)
+	self.anim:update(dt)
 end
 
 function Player:draw()
-	Player.anim:draw(Player.spriteSheet, Player.x, Player.y, nil, 5, nil, 6, 9)
+	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 5, nil, 6, 9)
 end

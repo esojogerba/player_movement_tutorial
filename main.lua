@@ -10,9 +10,6 @@ function love.load()
 	camera = require("libraries/camera")
 	cam = camera()
 
-	-- Anim8 library
-	anim8 = require("libraries/anim8")
-
 	-- Map
 	Map:load()
 
