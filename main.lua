@@ -2,11 +2,14 @@ require("player")
 require("map")
 
 function love.load()
+	-- Set the title
+	love.window.setTitle("Slime Game")
+
 	-- Windfield physics library
 	wf = require("libraries/Windfield")
 	world = wf.newWorld(0, 0)
 
-	-- Collision class
+	-- Collision classes
 	world:addCollisionClass("Obstacle", { collidesWith = { "Enemy", "Player" } })
 	world:addCollisionClass("Player", { collidesWith = { "Obstacle", "Enemy" } })
 
