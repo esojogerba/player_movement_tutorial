@@ -48,9 +48,6 @@ end
 
 -- Player movement with arrow keys
 function Player:move(dt)
-	-- Check if no keys are pressed
-	local isMoving = false
-
 	-- Velocities
 	local vx = 0
 	local vy = 0
@@ -59,25 +56,21 @@ function Player:move(dt)
 	if love.keyboard.isDown("right") then
 		vx = self.speed
 		self.anim = self.animations.right
-		isMoving = true
 	end
 	-- Player moves left
 	if love.keyboard.isDown("left") then
 		vx = self.speed * -1
 		self.anim = self.animations.left
-		isMoving = true
 	end
 	-- Player moves up
 	if love.keyboard.isDown("up") then
 		vy = self.speed * -1
 		self.anim = self.animations.up
-		isMoving = true
 	end
 	-- Player moves down
 	if love.keyboard.isDown("down") then
 		vy = self.speed
 		self.anim = self.animations.down
-		isMoving = true
 	end
 	-- Player moves in a diagonal direction
 	if vx ~= 0 and vy ~= 0 then
@@ -89,14 +82,9 @@ function Player:move(dt)
 	-- Update linear velocity of collider depending on key pressed
 	self.collider:setLinearVelocity(vx, vy)
 
-	-- If player is standing still, use still frame
-	if isMoving == false then
-		self.anim:gotoFrame(1)
-	end
-
 	self.anim:update(dt)
 end
 
 function Player:draw()
-	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, nil, 6, 5)
+	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, 2, 6, 5)
 end
