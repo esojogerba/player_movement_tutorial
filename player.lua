@@ -8,7 +8,7 @@ function Player:load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- Collider
-	self.collider = world:newBSGRectangleCollider(0, 0, 25, 42, 5)
+	self.collider = world:newBSGRectangleCollider(50, 50, 15, 15, 2)
 	self.collider:setCollisionClass("Player")
 	self.collider:setFixedRotation(true)
 
@@ -20,18 +20,18 @@ function Player:load()
 	self.speed = 100
 
 	-- Sprite and grid
-	self.spriteSheet = love.graphics.newImage("sprites/player-sheet.png")
-	self.grid = anim8.newGrid(12, 18, self.spriteSheet:getWidth(), self.spriteSheet:getHeight())
+	self.spriteSheet = love.graphics.newImage("sprites/mainSlime.png")
+	self.grid = anim8.newGrid(12, 10, self.spriteSheet:getWidth(), self.spriteSheet:getHeight())
 
 	-- Animations
 	self.animations = {}
-	self.animations.down = anim8.newAnimation(self.grid("1-4", 1), 0.2)
-	self.animations.left = anim8.newAnimation(self.grid("1-4", 2), 0.2)
-	self.animations.right = anim8.newAnimation(self.grid("1-4", 3), 0.2)
-	self.animations.up = anim8.newAnimation(self.grid("1-4", 4), 0.2)
+	self.animations.left = anim8.newAnimation(self.grid("1-4", 1), 0.2)
+	self.animations.right = anim8.newAnimation(self.grid("1-4", 2), 0.2)
+	self.animations.up = anim8.newAnimation(self.grid("1-4", 3), 0.2)
+	self.animations.down = self.animations.right
 
 	-- Player's current animation
-	self.anim = self.animations.down
+	self.anim = self.animations.right
 end
 
 function Player:update(dt)
@@ -41,6 +41,9 @@ function Player:update(dt)
 	-- Match player position with collider position
 	self.x = self.collider:getX()
 	self.y = self.collider:getY()
+
+	-- Update animation
+	self.anim:update(dt)
 end
 
 -- Player movement with arrow keys
@@ -88,12 +91,12 @@ function Player:move(dt)
 
 	-- If player is standing still, use still frame
 	if isMoving == false then
-		self.anim:gotoFrame(2)
+		self.anim:gotoFrame(1)
 	end
 
 	self.anim:update(dt)
 end
 
 function Player:draw()
-	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, nil, 6, 9)
+	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, nil, 6, 5)
 end
