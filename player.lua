@@ -76,6 +76,12 @@ function Player:move(dt)
 		self.anim = self.animations.down
 		isMoving = true
 	end
+	-- Player moves in a diagonal direction
+	if vx ~= 0 and vy ~= 0 then
+		local magnitude = math.sqrt(vx * vx + vy * vy)
+		vx = (vx / magnitude) * self.speed
+		vy = (vy / magnitude) * self.speed
+	end
 
 	-- Update linear velocity of collider depending on key pressed
 	self.collider:setLinearVelocity(vx, vy)
