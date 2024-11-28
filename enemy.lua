@@ -10,20 +10,20 @@ function Enemy:load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- Collider
-	self.collider = world:newBSGRectangleCollider(20, 20, 15, 15, 2)
+	self.collider = world:newBSGRectangleCollider(250, 250, 15, 15, 2)
 	self.collider:setCollisionClass("Enemy")
 	self.collider:setFixedRotation(true)
 
 	-- Position
-	self.x = 50
-	self.y = 50
+	self.x = 300
+	self.y = 300
 
 	-- Speed
 	self.speed = 50
 
 	-- Sprite and grid
-	self.brownSlime = love.graphics.newImage("sprites/brownSlime.png")
-	self.grid = anim8.newGrid(12, 10, self.brownSlime:getWidth(), self.brownSlime:getHeight())
+	self.spriteSheet = love.graphics.newImage("sprites/brownSlime.png")
+	self.grid = anim8.newGrid(12, 10, self.spriteSheet:getWidth(), self.spriteSheet:getHeight())
 
 	-- Animations
 	self.animations = {}
@@ -75,5 +75,5 @@ function Enemy:update(dt, player)
 end
 
 function Enemy:draw()
-	self.anim:draw(self.brownSlime, self.x, self.y, nil, 2, 2, 6, 5)
+	self.anim:draw(self.spriteSheet, self.x, self.y, nil, 2, 2, 6, 5)
 end
