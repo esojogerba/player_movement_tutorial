@@ -1,5 +1,6 @@
 require("player")
 require("map")
+require("enemy")
 
 function love.load()
 	-- Set the title
@@ -12,6 +13,7 @@ function love.load()
 	-- Collision classes
 	world:addCollisionClass("Obstacle", { collidesWith = { "Enemy", "Player" } })
 	world:addCollisionClass("Player", { collidesWith = { "Obstacle", "Enemy" } })
+	world:addCollisionClass("Enemy", { collidesWith = { "Obstacle", "Player" } })
 
 	-- Camera library
 	camera = require("libraries/camera")
@@ -35,6 +37,9 @@ function love.load()
 
 	-- Player
 	Player:load()
+
+	-- Enemy
+	Enemy:load()
 end
 
 function love.update(dt)
@@ -43,6 +48,9 @@ function love.update(dt)
 
 	-- Player
 	Player:update(dt)
+
+	-- Enemy
+	Enemy:update(dt, Player)
 
 	-- Update world
 	world:update(dt)
@@ -60,6 +68,9 @@ function love.draw()
 
 	-- Player
 	Player:draw()
+
+	-- Enemy
+	Enemy:draw()
 
 	-- Draw world colliders
 	-- world:draw()
