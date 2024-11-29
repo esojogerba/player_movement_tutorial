@@ -1,6 +1,7 @@
 require("player")
 require("map")
 require("enemy")
+require("sounds")
 
 function love.load()
 	-- Set the title
@@ -40,6 +41,9 @@ function love.load()
 
 	-- Enemy
 	Enemy:load()
+
+	-- Sounds
+	sounds:load()
 end
 
 function love.update(dt)
